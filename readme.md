@@ -36,28 +36,31 @@ rpm -ql mimalloc-custom
 # EL8
 
 ```
-yum -q info mimalloc-custom
-Installed Packages
-Name         : mimalloc-custom
-Version      : 2.0.6
-Release      : 1.el8
-Architecture : x86_64
-Size         : 587 k
-Source       : mimalloc-custom-2.0.6-1.el8.src.rpm
-Repository   : @System
-From repo    : @commandline
-Summary      : mimalloc-custom-2.0.6 for centminmod.com LEMP stack installs
-URL          : https://centminmod.com
-License      : unknown
-Description  : mimalloc-custom-2.0.6 for centminmod.com LEMP stacks
+rpm -qpi mimalloc-custom-2.2.4-1.el8.x86_64.rpm
+Name        : mimalloc-custom
+Version     : 2.2.4
+Release     : 1.el8
+Architecture: x86_64
+Install Date: (not installed)
+Group       : default
+Size        : 812195
+License     : unknown
+Signature   : (none)
+Source RPM  : mimalloc-custom-2.2.4-1.el8.src.rpm
+Build Date  : Fri 17 Oct 2025 06:01:21 CDT
+Build Host  : build.domain.com
+Relocations : / 
+Packager    : <centminmod.com>
+Vendor      : none
+URL         : https://centminmod.com
+Summary     : mimalloc-custom-2.2.4 for centminmod.com LEMP stack installs
+Description :
 ```
 ```
-rpm -ql mimalloc-custom
-/usr/lib/.build-id
-/usr/lib/.build-id/77
-/usr/lib/.build-id/77/56d131498f5e8282f1a69ea14923229d14385c
+rpm -qpl mimalloc-custom-2.2.4-1.el8.x86_64.rpm
 /usr/local/nginx-dep/include/mimalloc-new-delete.h
 /usr/local/nginx-dep/include/mimalloc-override.h
+/usr/local/nginx-dep/include/mimalloc-stats.h
 /usr/local/nginx-dep/include/mimalloc.h
 /usr/local/nginx-dep/lib/cmake/mimalloc/mimalloc-config-version.cmake
 /usr/local/nginx-dep/lib/cmake/mimalloc/mimalloc-config.cmake
@@ -66,8 +69,93 @@ rpm -ql mimalloc-custom
 /usr/local/nginx-dep/lib/libmimalloc.a
 /usr/local/nginx-dep/lib/libmimalloc.so
 /usr/local/nginx-dep/lib/libmimalloc.so.2
-/usr/local/nginx-dep/lib/libmimalloc.so.2.0
+/usr/local/nginx-dep/lib/libmimalloc.so.2.2
 /usr/local/nginx-dep/lib/mimalloc.o
+/usr/local/nginx-dep/lib/pkgconfig/mimalloc.pc
+```
+
+# EL9
+
+```
+rpm -qpi mimalloc-2.2.4/mimalloc-custom-2.2.4-1.el9.x86_64.rpm
+Name        : mimalloc-custom
+Version     : 2.2.4
+Release     : 1.el9
+Architecture: x86_64
+Install Date: (not installed)
+Group       : default
+Size        : 812695
+License     : unknown
+Signature   : (none)
+Source RPM  : mimalloc-custom-2.2.4-1.el9.src.rpm
+Build Date  : Fri 17 Oct 2025 03:38:19 AM PDT
+Build Host  : build.domain.com
+Relocations : / 
+Packager    : <centminmod.com>
+Vendor      : none
+URL         : https://centminmod.com
+Summary     : mimalloc-custom-2.2.4 for centminmod.com LEMP stack installs
+Description :
+```
+
+```
+rpm -qpl mimalloc-2.2.4/mimalloc-custom-2.2.4-1.el9.x86_64.rpm
+/usr/local/nginx-dep/include/mimalloc-new-delete.h
+/usr/local/nginx-dep/include/mimalloc-override.h
+/usr/local/nginx-dep/include/mimalloc-stats.h
+/usr/local/nginx-dep/include/mimalloc.h
+/usr/local/nginx-dep/lib/cmake/mimalloc/mimalloc-config-version.cmake
+/usr/local/nginx-dep/lib/cmake/mimalloc/mimalloc-config.cmake
+/usr/local/nginx-dep/lib/cmake/mimalloc/mimalloc-release.cmake
+/usr/local/nginx-dep/lib/cmake/mimalloc/mimalloc.cmake
+/usr/local/nginx-dep/lib/libmimalloc.a
+/usr/local/nginx-dep/lib/libmimalloc.so
+/usr/local/nginx-dep/lib/libmimalloc.so.2
+/usr/local/nginx-dep/lib/libmimalloc.so.2.2
+/usr/local/nginx-dep/lib/mimalloc.o
+/usr/local/nginx-dep/lib/pkgconfig/mimalloc.pc
+```
+
+# EL10
+
+```
+rpm -qpi mimalloc-custom-2.2.4-1.el10.x86_64.rpm
+Name        : mimalloc-custom
+Version     : 2.2.4
+Release     : 1.el10
+Architecture: x86_64
+Install Date: (not installed)
+Group       : default
+Size        : 850629
+License     : unknown
+Signature   : (none)
+Source RPM  : mimalloc-custom-2.2.4-1.el10.src.rpm
+Build Date  : Fri 17 Oct 2025 11:09:14 AM UTC
+Build Host  : build.domain.com
+Relocations : / 
+Packager    : <centminmod.com>
+Vendor      : none
+URL         : https://centminmod.com
+Summary     : mimalloc-custom-2.2.4 for centminmod.com LEMP stack installs
+Description :
+```
+
+```
+rpm -qpl mimalloc-custom-2.2.4-1.el10.x86_64.rpm
+/usr/local/nginx-dep/include/mimalloc-new-delete.h
+/usr/local/nginx-dep/include/mimalloc-override.h
+/usr/local/nginx-dep/include/mimalloc-stats.h
+/usr/local/nginx-dep/include/mimalloc.h
+/usr/local/nginx-dep/lib/cmake/mimalloc/mimalloc-config-version.cmake
+/usr/local/nginx-dep/lib/cmake/mimalloc/mimalloc-config.cmake
+/usr/local/nginx-dep/lib/cmake/mimalloc/mimalloc-release.cmake
+/usr/local/nginx-dep/lib/cmake/mimalloc/mimalloc.cmake
+/usr/local/nginx-dep/lib/libmimalloc.a
+/usr/local/nginx-dep/lib/libmimalloc.so
+/usr/local/nginx-dep/lib/libmimalloc.so.2
+/usr/local/nginx-dep/lib/libmimalloc.so.2.2
+/usr/local/nginx-dep/lib/mimalloc.o
+/usr/local/nginx-dep/lib/pkgconfig/mimalloc.pc
 ```
 
 # Centmin Mod Nginx with mialloc
