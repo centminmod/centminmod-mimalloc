@@ -160,113 +160,103 @@ rpm -qpl mimalloc-custom-2.2.4-1.el10.x86_64.rpm
 
 # Centmin Mod Nginx with mialloc
 
-```
+On AlmaLinux 10 with Nginx 1.29.2
+
+```bash
 nginx -V
-nginx version: nginx/1.21.6 (170522-165900-centos7-084a0c4-br-6e975bc)
-built by gcc 10.2.1 20210130 (Red Hat 10.2.1-11) (GCC) 
-built with OpenSSL 1.1.1o  3 May 2022
+nginx version: nginx/1.29.2 (171025-114910-almalinux10-kvm-92df7d7)
+built by gcc 14.2.1 20250110 (Red Hat 14.2.1-7) (GCC) 
+built with OpenSSL 3.2.2 4 Jun 2024
 TLS SNI support enabled
-configure arguments: --with-ld-opt='-Wl,-E -L/usr/local/nginx-dep/lib -lpcre2-8 
--lmimalloc -Wl,-z,relro 
--Wl,-rpath,/usr/local/nginx-dep/lib:/usr/local/nginx-dep/lib 
--B/usr/local/libexec/mold' --with-cc-opt='-I/usr/local/nginx-dep/include -m64 
--march=native -DTCP_FASTOPEN=23 -falign-functions=32 -g -O3 
--Wno-strict-aliasing -fstack-protector-strong -B/usr/local/libexec/mold 
---param=ssp-buffer-size=4 -Wformat -Werror=format-security -Wno-pointer-sign 
--Wimplicit-fallthrough=0 -Wno-missing-profile 
--Wno-implicit-function-declaration -Wno-int-conversion -Wno-unused-result 
--Wno-unused-result -fcode-hoisting -Wp,-D_FORTIFY_SOURCE=2 
--Wno-deprecated-declarations' --sbin-path=/usr/local/sbin/nginx 
+configure arguments: --with-ld-opt='-Wl,-E -L/usr/local/zlib-cf/lib 
+-L/usr/local/nginx-dep/lib -lpcre2-8 -lmimalloc -Wl,-z,relro,-z,now 
+-Wl,-rpath,/usr/local/nginx-dep/lib:/usr/local/zlib-cf/lib:/usr/local/nginx-dep/
+lib -pie -Wl,-Bsymbolic-functions -Wl,--as-needed' 
+--with-cc-opt='-I/usr/local/zlib-cf/include -I/usr/local/nginx-dep/include -m64 
+-march=x86-64-v3 -mavx -mavx2 -mpclmul -msse4 -msse4.1 -msse4.2 -fPIC -g -O3 
+-fstack-protector-strong --param=ssp-buffer-size=4 -Wformat -Wno-pointer-sign 
+-Wimplicit-fallthrough=0 -Wno-implicit-function-declaration -Wno-cast-align 
+-Wno-builtin-declaration-mismatch -Wno-deprecated-declarations 
+-Wno-int-conversion -Wno-unused-result -Wno-vla-parameter 
+-Wno-maybe-uninitialized -Wno-return-local-addr -Wno-array-parameter 
+-Wno-alloc-size-larger-than -Wno-address -Wno-array-bounds 
+-Wno-discarded-qualifiers -Wno-stringop-overread -Wno-stringop-truncation 
+-Wno-missing-field-initializers -Wno-unused-variable -Wno-format 
+-Wno-error=unused-result -Wno-missing-profile -Wno-stringop-overflow 
+-Wno-free-nonheap-object -Wno-discarded-qualifiers -Wno-bad-function-cast 
+-Wno-dangling-pointer -Wno-array-parameter -fcode-hoisting 
+-Wno-cast-function-type -Wno-format-extra-args -Wp,-D_FORTIFY_SOURCE=2' 
+--prefix=/usr/local/nginx --sbin-path=/usr/local/sbin/nginx 
 --conf-path=/usr/local/nginx/conf/nginx.conf 
---build=170522-165900-centos7-084a0c4-br-6e975bc --with-compat 
---with-http_auth_request_module --with-http_stub_status_module 
---with-http_secure_link_module --with-http_flv_module --with-http_mp4_module 
---add-module=../nginx-rtmp-module --add-dynamic-module=../nginx-module-vts 
---with-libatomic --with-http_gzip_static_module 
---add-dynamic-module=../ngx_brotli 
---add-dynamic-module=../ngx_http_geoip2_module --with-http_sub_module 
+--build=171025-114910-almalinux10-kvm-92df7d7 --with-compat 
+--with-http_stub_status_module --with-http_secure_link_module --with-libatomic 
+--with-http_gzip_static_module --with-http_sub_module 
 --with-http_addition_module --with-http_image_filter_module=dynamic 
---with-http_geoip_module --add-dynamic-module=../njs/nginx 
---with-stream_geoip_module --with-stream_realip_module 
+--with-http_geoip_module --with-stream_geoip_module --with-stream_realip_module 
 --with-stream_ssl_preread_module --with-threads --with-stream 
---with-stream_ssl_module --with-http_slice_module --with-http_realip_module 
---add-dynamic-module=../ngx-fancyindex-0.4.2 
---add-module=../ngx_cache_purge-2.5.1 
---add-dynamic-module=../ngx_devel_kit-0.3.0 
---add-dynamic-module=../set-misc-nginx-module-0.32 
---add-dynamic-module=../echo-nginx-module-0.62 
---add-module=../redis2-nginx-module-0.15 --add-module=../ngx_http_redis-0.3.7 
---add-module=../memc-nginx-module-0.19 
---add-module=../srcache-nginx-module-0.32 
---add-dynamic-module=../headers-more-nginx-module-0.33 --with-pcre-jit 
---with-zlib=../zlib-1.2.12 --with-http_ssl_module --with-http_v2_module 
---with-http_v2_hpack_enc --with-openssl=../openssl-1.1.1o
+--with-stream_ssl_module --with-http_realip_module 
+--add-dynamic-module=../ngx-fancyindex-0.5.2 
+--add-module=../ngx_cache_purge-2.5.3 
+--add-dynamic-module=../ngx_devel_kit-0.3.2 
+--add-dynamic-module=../set-misc-nginx-module-0.33 
+--add-dynamic-module=../echo-nginx-module-0.63 
+--add-module=../redis2-nginx-module-0.15 
+--add-module=../ngx_http_redis-0.4.0-cmm --add-module=../memc-nginx-module-0.20 
+--add-module=../srcache-nginx-module-0.33 
+--add-dynamic-module=../headers-more-nginx-module-0.38 --with-pcre-jit 
+--with-zlib=../zlib-cloudflare-1.3.3 --with-zlib-opt=-fPIC 
+--with-http_ssl_module --with-http_v2_module
 ```
-```
-ldd $(which nginx)                                                                                                                                                           
-        linux-vdso.so.1 =>  (0x00007fffa55ab000)
-        libpcre2-8.so.0 => /usr/local/nginx-dep/lib/libpcre2-8.so.0 (0x00007ff59fe3c000)
-        libmimalloc.so.2 => /usr/local/nginx-dep/lib/libmimalloc.so.2 (0x00007ff5a0270000)
-        libdl.so.2 => /lib64/libdl.so.2 (0x00007ff59fc38000)
-        libpthread.so.0 => /lib64/libpthread.so.0 (0x00007ff59fa1c000)
-        libcrypt.so.1 => /lib64/libcrypt.so.1 (0x00007ff59f7e5000)
-        libGeoIP.so.1 => /lib64/libGeoIP.so.1 (0x00007ff59f5b3000)
-        libatomic_ops.so.1 => /usr/local/nginx-dep/lib/libatomic_ops.so.1 (0x00007ff59f3b1000)
-        libc.so.6 => /lib64/libc.so.6 (0x00007ff59efe3000)
-        /lib64/ld-linux-x86-64.so.2 (0x00007ff5a00c9000)
-        librt.so.1 => /lib64/librt.so.1 (0x00007ff59eddb000)
-        libfreebl3.so => /lib64/libfreebl3.so (0x00007ff59ebd8000)
+```bash
+ldd $(which nginx)
+        linux-vdso.so.1 (0x00007f1d746ce000)
+        libpcre2-8.so.0 => /usr/local/nginx-dep/lib/libpcre2-8.so.0 (0x00007f1d74494000)
+        libmimalloc.so.2 => /usr/local/nginx-dep/lib/libmimalloc.so.2 (0x00007f1d7445e000)
+        libcrypt.so.2 => /lib64/libcrypt.so.2 (0x00007f1d7441b000)
+        libssl.so.3 => /lib64/libssl.so.3 (0x00007f1d74344000)
+        libcrypto.so.3 => /lib64/libcrypto.so.3 (0x00007f1d73e00000)
+        libGeoIP.so.1 => /lib64/libGeoIP.so.1 (0x00007f1d74307000)
+        libc.so.6 => /lib64/libc.so.6 (0x00007f1d73c27000)
+        libatomic.so.1 => /lib64/libatomic.so.1 (0x00007f1d742fc000)
+        libz.so.1 => /usr/local/zlib-cf/lib/libz.so.1 (0x00007f1d742de000)
+        /lib64/ld-linux-x86-64.so.2 (0x00007f1d746d0000)
 ```
 
-```
+```bash
 lsof | grep libmimalloc.so | head -n2
-nginx     22110             root  mem       REG                9,1    135648     553692 /usr/local/nginx-dep/lib/libmimalloc.so.2.0
-nginx     22118            nginx  mem       REG                9,1    135648     553692 /usr/local/nginx-dep/lib/libmimalloc.so.2.0
+nginx     1778838                        root  mem       REG                8,4    218112  151090452 /usr/local/nginx-dep/lib/libmimalloc.so.2.2
+nginx     1778839                       nginx  mem       REG                8,4    218112  151090452 /usr/local/nginx-dep/lib/libmimalloc.so.2.2
 ```
 
-Centmin Mod Nginx with mimalloc 2.0.6
+Centmin Mod Nginx with mimalloc 2.2.4
 
-```
+```bash
 ps aufxw | grep 'nginx:' | grep -v grep
-root     22110  0.0  0.5 515996 172776 ?       Ss   16:59   0:00 nginx: master process /usr/local/sbin/nginx -c /usr/local/nginx/conf/nginx.conf
-nginx    22118  0.0  1.0 835548 342156 ?       S<l  16:59   0:00  \_ nginx: worker process
-nginx    22121  0.0  1.0 835548 342156 ?       S<l  16:59   0:00  \_ nginx: worker process
-nginx    22123  0.0  1.0 835548 342156 ?       S<l  16:59   0:00  \_ nginx: worker process
-nginx    22129  0.0  1.0 835548 342156 ?       S<l  16:59   0:00  \_ nginx: worker process
-nginx    22133  0.0  1.0 835548 342156 ?       S<l  16:59   0:00  \_ nginx: worker process
-nginx    22136  0.0  1.0 835548 342640 ?       S<l  16:59   0:00  \_ nginx: worker process
-nginx    22139  0.0  1.0 835548 342636 ?       S<l  16:59   0:00  \_ nginx: worker process
-nginx    22200  0.0  1.0 835548 342632 ?       S<l  16:59   0:00  \_ nginx: worker process
+root     1778838  0.0  0.3 1101592 28500 ?       Ss   11:50   0:00 nginx: master process /usr/local/sbin/nginx -c /usr/local/nginx/conf/nginx.conf
+nginx    1778839  0.1  2.0 2228000 159252 ?      S<   11:50   0:00  \_ nginx: worker process
+nginx    1778840  0.1  2.0 2228000 159252 ?      S<   11:50   0:00  \_ nginx: worker process
 ```
 
 Compared to Centmin Mod Nginx with jemalloc 5.3.0
 
-```
+```bash
 ps aufxw | grep 'nginx:' | grep -v grep
-root      4195  0.2  0.5 452244 171960 ?       Ss   11:24   0:00 nginx: master process /usr/local/sbin/nginx -c /usr/local/nginx/conf/nginx.conf
-nginx     4196  0.4  1.0 743944 341344 ?       S<l  11:24   0:00  \_ nginx: worker process
-nginx     4197  0.4  1.0 743944 341344 ?       S<l  11:24   0:00  \_ nginx: worker process
-nginx     4198  0.4  1.0 743944 341344 ?       S<l  11:24   0:00  \_ nginx: worker process
-nginx     4199  0.4  1.0 743944 341344 ?       S<l  11:24   0:00  \_ nginx: worker process
-nginx     4200  0.4  1.0 743944 341824 ?       S<l  11:24   0:00  \_ nginx: worker process
-nginx     4201  0.4  1.0 743944 341344 ?       S<l  11:24   0:00  \_ nginx: worker process
-nginx     4202  0.3  1.0 743944 341344 ?       S<l  11:24   0:00  \_ nginx: worker process
-nginx     4203  0.3  1.0 743944 341344 ?       S<l  11:24   0:00  \_ nginx: worker process
+root     1807584  0.0  0.3  95936 28908 ?        Ss   12:16   0:00 nginx: master process /usr/local/sbin/nginx -c /usr/local/nginx/conf/nginx.conf
+nginx    1807585  0.2  2.0 308928 159364 ?       S<   12:16   0:00  \_ nginx: worker process
+nginx    1807586  0.1  2.0 308928 159364 ?       S<   12:16   0:00  \_ nginx: worker process
 ```
-
-Compared to Centmin Mod Nginx with jemalloc 3.6.0 default
-
-```
-ps aufxw | grep 'nginx:' | grep -v grep
-root     22715  0.1  0.5 437864 171680 ?       Ss   22:30   0:00 nginx: master process /usr/local/sbin/nginx -c /usr/local/nginx/conf/nginx.conf
-nginx    22722  0.3  1.0 745128 341044 ?       S<l  22:30   0:00  \_ nginx: worker process
-nginx    22724  0.2  1.0 745128 341044 ?       S<l  22:30   0:00  \_ nginx: worker process
-nginx    22728  0.2  1.0 745128 341044 ?       S<l  22:30   0:00  \_ nginx: worker process
-nginx    22730  0.3  1.0 745128 341044 ?       S<l  22:30   0:00  \_ nginx: worker process
-nginx    22735  0.3  1.0 745128 341044 ?       S<l  22:30   0:00  \_ nginx: worker process
-nginx    22737  0.2  1.0 745128 341044 ?       S<l  22:30   0:00  \_ nginx: worker process
-nginx    22740  0.2  1.0 745128 341044 ?       S<l  22:30   0:00  \_ nginx: worker process
-nginx    22759  0.2  1.0 745128 341044 ?       S<l  22:30   0:00  \_ nginx: worker process
+```bash
+ldd $(which nginx)
+        linux-vdso.so.1 (0x00007f13e5f16000)
+        libpcre2-8.so.0 => /usr/local/nginx-dep/lib/libpcre2-8.so.0 (0x00007f13e5cdc000)
+        libjemalloc.so.2 => /lib64/libjemalloc.so.2 (0x00007f13e5a00000)
+        libcrypt.so.2 => /lib64/libcrypt.so.2 (0x00007f13e59c8000)
+        libssl.so.3 => /lib64/libssl.so.3 (0x00007f13e58f1000)
+        libcrypto.so.3 => /lib64/libcrypto.so.3 (0x00007f13e5400000)
+        libGeoIP.so.1 => /lib64/libGeoIP.so.1 (0x00007f13e58b6000)
+        libc.so.6 => /lib64/libc.so.6 (0x00007f13e5227000)
+        libz.so.1 => /usr/local/zlib-cf/lib/libz.so.1 (0x00007f13e5cb1000)
+        /lib64/ld-linux-x86-64.so.2 (0x00007f13e5f18000)
 ```
 
 # Other Usage
